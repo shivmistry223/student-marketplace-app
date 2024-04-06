@@ -1,0 +1,10 @@
+.container {
+    background-color: antiquewhite;
+    
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        height: calc(100vh - 64px);
+        background-color: white;
+    }
+}
