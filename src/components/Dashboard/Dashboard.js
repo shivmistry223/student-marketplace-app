@@ -5,6 +5,8 @@ import CustomHeader from "../CustomHeader/CustomHeader";
 import styles from "./Dashboard.module.scss";
 import Product from "../Product/Product";
 import { MENU_OPTIONS, product } from "./constant";
+import ProductForm from "../ProductForm/ProductForm";
+import { renderMenu } from "./helper";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
@@ -12,19 +14,29 @@ const Dashboard = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-
   const [currPage, setPage] = useState("1");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setPage("1")
+  };
 
   useEffect(() => {
-    console.log(currPage);
-    setLoading(true)
+    setLoading(true);
     fetch("https://run.mocky.io/v3/de4dda78-c9ee-45e0-aefb-90bd57f59aaf")
       .then((response) => response.json())
       .then((data) => {
-        setLoading(false)
-        setProducts(product)
+        setLoading(false);
+        setProducts(product);
       })
       .catch((e) => setLoading(false));
   }, [currPage]);
@@ -35,10 +47,9 @@ const Dashboard = () => {
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
-          console.log(broken);
         }}
         onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+          // console.log(collapsed, type);
         }}
       >
         <CustomMenu currPage={currPage} setPage={setPage} />
@@ -59,13 +70,14 @@ const Dashboard = () => {
               className={styles.allProduct}
             >
               <h1>{MENU_OPTIONS[parseInt(currPage) - 1].title}</h1>
-              <div className={styles.main}>
-                {products && products.map((item) => <Product
-                  currPage={currPage}
-                  setPage={setPage}
-                  {...item}
-                />)}
-              </div>
+              {renderMenu(
+                currPage,
+                setPage,
+                products,
+                isModalOpen,
+                handleOk,
+                handleCancel
+              )}
             </div>
           )}
         </Content>

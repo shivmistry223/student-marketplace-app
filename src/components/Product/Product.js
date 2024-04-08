@@ -19,7 +19,7 @@ const Product = ({ img, name, price, ownerImg, ownerName, currPage, setPage }) =
    navigate('/product-detail', { state: props });
   }
   return(
-  <Card className={Styles.card}>
+  <Card className={Styles.card} >
     <Image src={img} alt={name} className={Styles.cardImage} />
     <div className={Styles.cardContent} onClick={handleClick}>
       <p className={Styles.cardTitle}>{name}</p>
