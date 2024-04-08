@@ -5,8 +5,7 @@ import Styles from './CustomHeader.module.scss'
 
 const CustomHeader = () => (
     <Header className={Styles.container}>
-        <CustomMenu />
-        {/* <h3>College MarketPlace</h3> */}
+      
     </Header>
 
 )

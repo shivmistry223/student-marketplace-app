@@ -10,6 +10,16 @@
     }
 }
 
-.header {
+.header, .menuContainer {
     height: calc(100vh - 64px);
+}
+
+
+.headerContainer {
+    height: 64px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }

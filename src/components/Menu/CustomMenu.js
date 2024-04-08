@@ -22,32 +22,28 @@ function getItem(label, key, icon, children, type) {
 }
 const items = [
   getItem("All Products", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("Option 3", "3", <ContainerOutlined />),
-  getItem("Navigation One", "sub1", <MailOutlined />, [
-    getItem("Option 5", "5"),
-    getItem("Option 6", "6"),
-    getItem("Option 7", "7"),
-    getItem("Option 8", "8"),
-  ]),
+  getItem("Books", "2", <DesktopOutlined />),
+  getItem("Clothing", "3", <DesktopOutlined />),
+  getItem("Electronic", "4", <ContainerOutlined />),
+  getItem("Sports", "5",<MailOutlined />),
   getItem("My Profile", "sub2", <AppstoreOutlined />, [
     getItem("Profile", "9"),
     getItem("Logout", "10"),
   ]),
 ];
-const CustomMenu = () => {
+const CustomMenu = ({currPage, setPage}) => {
   return (
     <div
-      // style={{
-      //   width: 256,
-      // }}
+     className={Styles.menuContainer}
     >
+      <div className={Styles.headerContainer}>Lambton MarketPlace</div>
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={[currPage]}
         items={items}
         className={Styles.header}
+        onSelect={(info) => setPage(info.key)}
       />
     </div>
   );
