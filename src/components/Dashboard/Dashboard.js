@@ -8,6 +8,7 @@ import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
 import { logOut } from "../Helper";
+import { DASHBOARD } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://run.mocky.io/v3/de4dda78-c9ee-45e0-aefb-90bd57f59aaf")
+    fetch(DASHBOARD)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);

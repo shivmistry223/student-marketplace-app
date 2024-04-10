@@ -7,13 +7,12 @@ import ProductForm from './components/ProductForm/ProductForm';
 import Register from './components/Register/Register';
 
 function App() {
-  const [user, setUser] = useState(null);
 
   return (
     <Router>
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/product-detail" element={<ProductDetails/>} />
         <Route path="/product-form" element={<ProductForm/>} />

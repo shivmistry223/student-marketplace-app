@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Upload, Dragger, Select, Checkbox } from "antd";
-import { UploadOutlined, UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Select } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./MyProfileForm.module.scss";
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
+import { PROFILE } from "../constant";
 
 const productTypes = [
   { label: "Term 1", value: 1 },
@@ -30,7 +26,7 @@ const MyProfileForm = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/")
+    fetch(PROFILE)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
@@ -40,7 +36,20 @@ const MyProfileForm = () => {
   }, []);
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+    console.log("Received values of form: ", values);
+
+    setLoading(true);
+    fetch(PROFILE, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: values,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+        window.location.href = "/login";
+      })
+      .catch((e) => setLoading(false));
   };
 
   const onFinishFailed = (errorInfo) => {

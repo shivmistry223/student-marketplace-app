@@ -1,2 +1,5 @@
 export const LOGIN = '/'
 export const REGISTER = '/'
+export const DASHBOARD = 'https://run.mocky.io/v3/de4dda78-c9ee-45e0-aefb-90bd57f59aaf'
+export const PRODUCT = ''
+export const PROFILE = ''
