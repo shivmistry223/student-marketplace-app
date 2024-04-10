@@ -7,6 +7,7 @@ import Product from "../Product/Product";
 import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
+import { logOut } from "../Helper";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = () => {
@@ -24,6 +25,7 @@ const Dashboard = () => {
   };
   const handleOk = () => {
     setIsModalOpen(false);
+    logOut()
   };
   const handleCancel = () => {
     setIsModalOpen(false);

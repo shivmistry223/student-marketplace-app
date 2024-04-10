@@ -89,7 +89,7 @@ export const MENU_OPTIONS = [
   {
     page: "6",
     type: "sport",
-    title: "Sports",
+    title: "Profile",
   },
   {
     page: "7",

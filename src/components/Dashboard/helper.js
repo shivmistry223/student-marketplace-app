@@ -2,6 +2,7 @@ import {Modal} from 'antd';
 import Product from "../Product/Product";
 import ProductForm from "../ProductForm/ProductForm";
 import styles from "./Dashboard.module.scss";
+import MyProfileForm from '../MyProfileForm/MyProfileForm';
 
 const onFinish = (values) => {
   console.log(values);
@@ -30,6 +31,8 @@ export const renderMenu = (
         </div>
       );
       break;
+    case "6":
+        return <MyProfileForm />
     case "7":
       return <ProductForm onFinish={onFinish} />;
     case "8":

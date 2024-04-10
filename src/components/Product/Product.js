@@ -2,6 +2,7 @@ import React from "react";
 import Styles from "./Product.module.scss";
 import { Card, Image } from "antd";
 import { useNavigate } from "react-router-dom";
+import {  UserOutlined } from "@ant-design/icons";
 
 
 const Product = ({ img, name, price, ownerImg, ownerName, currPage, setPage }) => {
@@ -25,8 +26,9 @@ const Product = ({ img, name, price, ownerImg, ownerName, currPage, setPage }) =
       <p className={Styles.cardTitle}>{name}</p>
       <p className={Styles.cardPrice}>${price}</p>
       <div className={Styles.ownerContainer}>
-        <img src={ownerImg} alt={ownerName} className={Styles.ownerImg} />
-        <p className={Styles.cardOwnerName}>{ownerName}</p>
+        {/* <img src={ownerImg} alt={ownerName} className={Styles.ownerImg} /> */}
+        <UserOutlined />
+         <p className={Styles.cardOwnerName}>{ownerName}</p>
       </div>
     </div>
   </Card>

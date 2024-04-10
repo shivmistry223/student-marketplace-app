@@ -1,0 +1,33 @@
+.myProfileForm {
+    .antForm {
+      .antFormItem {
+        margin-bottom: 16px;
+      }
+    }
+  
+    .antUploadDrag {
+      .antUploadDragIcon {
+        font-size: 32px;
+        color: #1890ff;
+      }
+  
+      .antUploadText {
+        font-size: 16px;
+        color: #666;
+        margin-top: 8px;
+      }
+  
+      .antUploadHint {
+        font-size: 14px;
+        color: #999;
+        margin-top: 8px;
+      }
+    }
+  
+    .antBtnPrimary {
+      .ant-btn-primary {
+        background-color: #1890ff;
+        border-color: #1890ff;
+      }
+    }
+  }

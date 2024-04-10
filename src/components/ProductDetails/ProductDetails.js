@@ -4,6 +4,7 @@ import styles from "../Dashboard/Dashboard.module.scss";
 import CustomMenu from "../Menu/CustomMenu";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { useLocation } from "react-router-dom";
+import {  UserOutlined } from "@ant-design/icons";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -60,7 +61,7 @@ const ProductDetails = () => {
                   </p>
                   <div className={styles.ownerDiv}>
                     <div className={styles.own}>
-                      <img src={product.ownerImg} alt={product.ownerName} />
+                      <UserOutlined style={{fontSize:"30px"}}/>
                       <p className={styles.ownerName}>{product.ownerName}</p>
                     </div>
                     <Button className={styles.button} onClick={showModal}>Contact Owner</Button>
