@@ -1,5 +1,5 @@
-export const setUser = () => {
-  localStorage.setItem("user", true);
+export const setUserData = (user) => {
+  localStorage.setItem("user", JSON.stringify(user));
 };
 
 export const userExists = () => {
@@ -12,3 +12,4 @@ export const logOut = () => {
   localStorage.removeItem("user");
   window.location.href = "/login";
 };
+

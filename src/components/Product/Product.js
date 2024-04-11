@@ -5,30 +5,26 @@ import { useNavigate } from "react-router-dom";
 import {  UserOutlined } from "@ant-design/icons";
 
 
-const Product = ({ img, name, price, ownerImg, ownerName, currPage, setPage }) => {
+const Product = ({ id, productimageUrl, productname, productPrice,  user, currPage, setPage }) => {
 
   const navigate = useNavigate();
 
   const handleClick = () => {
     const props = {
-      product:{
-        img,name,price,ownerImg,ownerName
-      },
       fromProduct: true,
       currPage
     }
-   navigate('/product-detail', { state: props });
+   navigate(`/product-detail/${id}`, { state: props });
   }
   return(
   <Card className={Styles.card} >
-    <Image src={img} alt={name} className={Styles.cardImage} />
+    <Image src={productimageUrl} alt={productname} className={Styles.cardImage} />
     <div className={Styles.cardContent} onClick={handleClick}>
-      <p className={Styles.cardTitle}>{name}</p>
-      <p className={Styles.cardPrice}>${price}</p>
+      <p className={Styles.cardTitle}>{productname}</p>
+      <p className={Styles.cardPrice}>${productPrice}</p>
       <div className={Styles.ownerContainer}>
-        {/* <img src={ownerImg} alt={ownerName} className={Styles.ownerImg} /> */}
         <UserOutlined />
-         <p className={Styles.cardOwnerName}>{ownerName}</p>
+         <p className={Styles.cardOwnerName}>{ `${user.firstName} ${user.lastName} `}</p>
       </div>
     </div>
   </Card>

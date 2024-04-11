@@ -14,7 +14,8 @@ export const renderMenu = (
   products,
   isModalOpen,
   handleOk,
-  handleCancel
+  handleCancel,
+  user
 ) => {
   switch (currPage) {
     case "1":
@@ -32,7 +33,7 @@ export const renderMenu = (
       );
       break;
     case "6":
-        return <MyProfileForm />
+        return <MyProfileForm user={user}/>
     case "7":
       return <ProductForm onFinish={onFinish} />;
     case "8":

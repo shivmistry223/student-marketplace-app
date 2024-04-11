@@ -3,12 +3,16 @@ import { Form, Input, Button, Checkbox, Layout } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
 import CustomHeader from '../CustomHeader/CustomHeader';
-import { LOGIN } from '../constant';
-import { setUser } from '../Helper';
+import { LOGIN, USER } from '../constant';
+import { setUserData } from '../Helper';
+import { useNavigate } from 'react-router-dom';
+
+
 const { Header, Content, Footer } = Layout;
-const Login = () => {
+const Login = ({setUser}) => {
 
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
 
 
   const onFinish = (values) => {
@@ -19,11 +23,13 @@ const Login = () => {
         headers: {'Content-Type':'application/json'},
         body: values
        })
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setUser()
-        window.location.href = "/dashboard"
+        // setUserData(USER)
+        setUserData(USER)
+        navigate('/dashboard');
+
       })
       .catch((e) => setLoading(false));
 

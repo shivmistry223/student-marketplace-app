@@ -1,28 +1,39 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Checkbox, Layout, Select } from "antd";
+import { Form, Input, Button, Checkbox, Layout, Select, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "../Login/Login.module.scss";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { REGISTER } from "../constant";
 const { Header, Content, Footer } = Layout;
+
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-
     setLoading(true);
     fetch(REGISTER, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: values,
     })
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((data) => {
         setLoading(false);
+        messageApi.open({
+          type: "success",
+          content: "User registered successfully",
+        });
         window.location.href = "/login";
       })
-      .catch((e) => setLoading(false));
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+        messageApi.open({
+          type: "Error",
+          content: "error",
+        });
+      });
   };
 
   const productTypes = [
@@ -36,6 +47,7 @@ const Register = () => {
     <Layout className={styles.layout}>
       <CustomHeader login={false} />
       <Content className={styles.container}>
+        {contextHolder}
         <Form
           name="normal_login"
           className={styles.mainContainer}

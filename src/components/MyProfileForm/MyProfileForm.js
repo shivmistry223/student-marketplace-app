@@ -20,24 +20,22 @@ const validateToNextPassword = (rule, value, callback) => {
   }
 };
 
-const MyProfileForm = () => {
+const MyProfileForm = ({user}) => {
   const [loading, setLoading] = useState(false);
-  const [initialValues, setInitialValues] = useState(false);
+  const [initialValues, setInitialValues] = useState(JSON.parse(localStorage.getItem('user')));
 
   useEffect(() => {
+
     setLoading(true);
     fetch(PROFILE)
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setInitialValues(data);
       })
       .catch((e) => setLoading(false));
   }, []);
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-
     setLoading(true);
     fetch(PROFILE, {
       method: "post",
@@ -47,7 +45,7 @@ const MyProfileForm = () => {
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        window.location.href = "/login";
+        window.location.href = "/dashboard";
       })
       .catch((e) => setLoading(false));
   };

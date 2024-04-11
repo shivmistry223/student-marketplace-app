@@ -11,7 +11,7 @@ import { logOut } from "../Helper";
 import { DASHBOARD } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -34,9 +34,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    console.log(user)
     setLoading(true);
     fetch(DASHBOARD)
-      .then((response) => response.json())
+      // .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         setProducts(product);
@@ -79,7 +80,8 @@ const Dashboard = () => {
                 products,
                 isModalOpen,
                 handleOk,
-                handleCancel
+                handleCancel,
+                user
               )}
             </div>
           )}
