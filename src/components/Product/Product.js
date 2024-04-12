@@ -57,7 +57,6 @@ const Product = ({
           <Button onClick={() => deleteProduct(id)}>
             <DeleteOutlined />
           </Button>
-          <Button onClick={handleUpdate}>Update</Button>
         </div>
       )}
     </Card>
