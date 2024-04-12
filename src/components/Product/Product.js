@@ -3,7 +3,8 @@ import Styles from "./Product.module.scss";
 import { Card, Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { UserOutlined, DeleteOutlined } from "@ant-design/icons";
-import { DELETE } from "../constant";
+import { DELETE, IMAGEDIR } from "../constant";
+import { isOwnProduct } from "../Helper";
 
 const Product = ({
   id,
@@ -25,14 +26,12 @@ const Product = ({
     navigate(`/product-detail/${id}`, { state: props });
   };
 
-  const isOwnProduct = () => {
-    return user.id === JSON.parse(localStorage.getItem("user")).id;
-  };
+  
 
   return (
     <Card className={Styles.card}>
       <Image
-        src={productimageUrl}
+        src={IMAGEDIR + productimageUrl}
         alt={productname}
         className={Styles.cardImage}
       />
@@ -46,7 +45,7 @@ const Product = ({
           >{`${user.firstName} ${user.lastName} `}</p>
         </div>
       </div>
-      {isOwnProduct() && (
+      {isOwnProduct(user.id) && (
         <div className={Styles.buttonDiv}>
           <Button onClick={() => deleteProduct(id)}>
             <DeleteOutlined />

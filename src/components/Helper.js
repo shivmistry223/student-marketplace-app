@@ -13,3 +13,7 @@ export const logOut = () => {
   window.location.href = "/login";
 };
 
+export const isOwnProduct = (id) => {
+  return id === JSON.parse(localStorage.getItem("user")).id;
+};
+

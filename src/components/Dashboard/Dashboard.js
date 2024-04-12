@@ -33,8 +33,14 @@ const Dashboard = ({ user }) => {
     setPage("1");
   };
   const deleteProduct = (id) => {
-    fetch(`${DELETE}`)
-      // .then((response) => response.json())
+    fetch(`${DELETE}`, {
+      method: "post",
+      body: {
+        userId: JSON.parse(localStorage.getItem('user')).id,
+        productId : id
+      },
+    })
+      .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         apiCall(currPage);
@@ -44,8 +50,8 @@ const Dashboard = ({ user }) => {
 
   const apiCall = (page) => {
     setLoading(true);
-    fetch(DASHBOARD)
-      // .then((response) => response.json())
+    fetch(`${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`)
+      .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         setProducts(product);
@@ -106,7 +112,7 @@ const Dashboard = ({ user }) => {
             textAlign: "center",
           }}
         >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          Lambton MarketPlace ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>

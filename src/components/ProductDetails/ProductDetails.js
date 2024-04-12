@@ -5,7 +5,7 @@ import CustomMenu from "../Menu/CustomMenu";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { useLocation, useParams} from "react-router-dom";
 import {  UserOutlined } from "@ant-design/icons";
-import { DASHBOARD, PRODUCT } from "../constant";
+import { DASHBOARD, IMAGEDIR, PRODUCT } from "../constant";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -43,7 +43,7 @@ const ProductDetails = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`${PRODUCT}/${id}`)
-      // .then((response) => response.json())
+      .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         setProduct(product);
@@ -87,7 +87,7 @@ const ProductDetails = () => {
             >
               <div className={styles.productDetail}>
                 <div className={styles.productImage}>
-                  <img src={product.productimageUrl} alt={product.productname} />
+                  <img src={IMAGEDIR + product.productimageUrl} alt={product.productname} />
                 </div>
                 <div className={styles.productInfo}>
                   <h2 className={styles.productName}>{product.productname}</h2>
@@ -122,7 +122,7 @@ const ProductDetails = () => {
             textAlign: "center",
           }}
         >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          Lambton MarketPlace ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>

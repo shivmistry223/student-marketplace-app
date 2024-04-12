@@ -21,13 +21,12 @@ const Login = ({setUser}) => {
     fetch(LOGIN, {
         method: 'post',
         headers: {'Content-Type':'application/json'},
-        body: values
+        body: JSON.stringify(values)
        })
-      // .then((response) => response.json())
+      .then((response) => response.json())
       .then((data) => {
-        setLoading(false);
-        // setUserData(USER)
-        setUserData(USER)
+        setLoading(false)
+        setUserData(data)
         navigate('/dashboard');
 
       })

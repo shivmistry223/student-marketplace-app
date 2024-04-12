@@ -28,7 +28,7 @@ const MyProfileForm = ({user}) => {
 
     setLoading(true);
     fetch(PROFILE)
-      // .then((response) => response.json())
+      .then((response) => response.json())
       .then((data) => {
         setLoading(false);
       })

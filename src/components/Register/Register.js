@@ -17,7 +17,7 @@ const Register = () => {
       headers: { "Content-Type": "application/json" },
       body: values,
     })
-      // .then((response) => response.json())
+      .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         messageApi.open({

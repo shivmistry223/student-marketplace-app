@@ -7,7 +7,6 @@ import { PRODUCT } from "../constant";
 const { Dragger } = Upload;
 
 const ProductForm = ({ initialValues }) => {
-  //   const [form] = useForm();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
 
@@ -16,23 +15,26 @@ const ProductForm = ({ initialValues }) => {
     console.log("Received values of form: ", values);
 
     const formData = new FormData();
-
-    formData.append('productName', values['name'])
-    formData.append('productdescription', values['description'])
+    const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);
+    const product = {
+      'productname' : values['name'],
+      'productdescription' : values['description'],
+      'productCatagory' :values['type'],
+      'productPrice':values['price']
+    }
     formData.append('file', file)
-    formData.append('productCatagory', values['type'])
-    formData.append('productPrice', values['price'])
-
+    formData.append('products', JSON.stringify(product));
+    formData.append('userId', 1);
+   
     setLoading(true);
     fetch(PRODUCT, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        window.location.href = "/dashboard";
+       window.location.href = "/dashboard";
       })
       .catch((e) => setLoading(false));
   };
