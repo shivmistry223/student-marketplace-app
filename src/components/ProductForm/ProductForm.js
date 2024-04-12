@@ -12,14 +12,11 @@ const { Dragger } = Upload;
 const ProductForm = ({  }) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
-  let { state } = useLocation();
 
   const [initialValues, setInitialValues] = useState()
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
 
-    const url = PRODUCT
-    const type = 'post'
     const formData = new FormData();
     const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);
     const product = {
@@ -29,11 +26,6 @@ const ProductForm = ({  }) => {
       'productPrice':values['price']
     }
   
-    if(state.id){
-      product['id'] = state.id
-      url = PRODUCTUPDATE
-      type = "put"
-    }
 
     formData.append('file', file)
     formData.append('products', JSON.stringify(product));
