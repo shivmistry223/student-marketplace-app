@@ -18,7 +18,6 @@ const ProductForm = ({  }) => {
     console.log("Received values of form: ", values);
 
     const formData = new FormData();
-    const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);
     const product = {
       'productname' : values['name'],
       'productdescription' : values['description'],
@@ -70,20 +69,6 @@ const ProductForm = ({  }) => {
     setFile(e.target.files[0]);
   };
 
-  useEffect(() => {
-
-    setLoading(true);
-    fetch(`${PRODUCT}/${state.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-        setInitialValues(data);
-      })
-      .catch((e) => {
-        setLoading(false)
-        window.location.href = '/dashboard'
-      }); 
-  },[]);
 
 
   return (

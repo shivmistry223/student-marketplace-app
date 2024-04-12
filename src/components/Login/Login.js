@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { Form, Input, Button, Checkbox, Layout } from 'antd';
+import { Form, Input, Button, Checkbox, Layout,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
 import CustomHeader from '../CustomHeader/CustomHeader';
@@ -12,6 +12,7 @@ const { Header, Content, Footer } = Layout;
 const Login = ({setUser}) => {
 
   const [loading, setLoading] = useState(false)
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
 
 
@@ -23,14 +24,28 @@ const Login = ({setUser}) => {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify(values)
        })
-      .then((response) => response.json())
+       .then((response) => {
+        if (!response.ok) {
+          return response.text().then(errorMessage => {
+            throw new Error(errorMessage);
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         setLoading(false)
         setUserData(data)
         navigate('/dashboard');
 
       })
-      .catch((e) => setLoading(false));
+      .catch((e) => {
+        setLoading(false);
+        console.log(e.message);
+        messageApi.open({
+          type: "Error",
+          content: e.message,
+        });
+      });
 
   };
 
@@ -38,6 +53,7 @@ const Login = ({setUser}) => {
     <Layout className={styles.layout}>
       <CustomHeader login={true} />
       <Content className={styles.container}>
+      {contextHolder}
       <Form
       name="normal_login"
       className={styles.mainContainer}

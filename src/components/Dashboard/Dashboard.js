@@ -33,12 +33,13 @@ const Dashboard = ({ user }) => {
     setPage("1");
   };
   const deleteProduct = (id) => {
-    fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem('user')).id}`, {
+    fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem("user")).id}`, {
       method: "delete",
-    })
+    })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
+        console.log('inside delete')
         apiCall(currPage);
       })
       .catch((e) => setLoading(false));
@@ -46,16 +47,30 @@ const Dashboard = ({ user }) => {
 
   const apiCall = (page) => {
     setLoading(true);
-    const id = JSON.parse(localStorage.getItem('user')).id
-    const url = page == '8'? `${MYPRODUCT}/${id}` : `${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
+    const id = JSON.parse(localStorage.getItem("user")).id;
+    const url =
+      page == "8"
+        ? `${MYPRODUCT}/${id}`
+        : `${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => {
+      if (!response.ok) {
+        return response.text().then(errorMessage => {
+          throw new Error(errorMessage);
+        });
+      }
+      return response.json();
+    })
       .then((data) => {
         setLoading(false);
         setProducts(data);
+        console.log(data,'inside main')
         setPage(page);
       })
-      .catch((e) => setLoading(false));
+      .catch((e) => {
+        console.log(e)
+        setProducts([]);
+        setLoading(false)});
   };
 
   useEffect(() => {
