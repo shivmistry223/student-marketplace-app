@@ -70,20 +70,6 @@ const ProductForm = ({  }) => {
     setFile(e.target.files[0]);
   };
 
-  useEffect(() => {
-
-    setLoading(true);
-    fetch(`${PRODUCT}/${state.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-        setInitialValues(data);
-      })
-      .catch((e) => {
-        setLoading(false)
-        window.location.href = '/dashboard'
-      }); 
-  },[]);
 
 
   return (
