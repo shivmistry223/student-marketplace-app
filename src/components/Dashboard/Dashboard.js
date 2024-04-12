@@ -8,7 +8,7 @@ import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
 import { logOut } from "../Helper";
-import { DASHBOARD, DELETE } from "../constant";
+import { DASHBOARD, DELETE, MYPRODUCT } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = ({ user }) => {
@@ -50,11 +50,13 @@ const Dashboard = ({ user }) => {
 
   const apiCall = (page) => {
     setLoading(true);
-    fetch(`${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`)
+    const id = JSON.parse(localStorage.getItem('user')).id
+    const url = page == '8'? `${MYPRODUCT}/${id}` : `${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setProducts(product);
+        setProducts(data);
         setPage(page);
       })
       .catch((e) => setLoading(false));
