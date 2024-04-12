@@ -8,10 +8,10 @@ import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
 import { logOut } from "../Helper";
-import { DASHBOARD } from "../constant";
+import { DASHBOARD, DELETE } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
-const Dashboard = ({user}) => {
+const Dashboard = ({ user }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -26,23 +26,37 @@ const Dashboard = ({user}) => {
   };
   const handleOk = () => {
     setIsModalOpen(false);
-    logOut()
+    logOut();
   };
   const handleCancel = () => {
     setIsModalOpen(false);
-    setPage("1")
+    setPage("1");
+  };
+  const deleteProduct = (id) => {
+    fetch(`${DELETE}`)
+      // .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+        apiCall(currPage);
+      })
+      .catch((e) => setLoading(false));
   };
 
-  useEffect(() => {
-    console.log(user)
+  const apiCall = (page) => {
     setLoading(true);
     fetch(DASHBOARD)
       // .then((response) => response.json())
       .then((data) => {
         setLoading(false);
         setProducts(product);
+        setPage(page);
       })
       .catch((e) => setLoading(false));
+  };
+
+  useEffect(() => {
+    console.log(user);
+    apiCall(currPage);
   }, [currPage]);
 
   return (
@@ -50,8 +64,7 @@ const Dashboard = ({user}) => {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        onBreakpoint={(broken) => {
-        }}
+        onBreakpoint={(broken) => {}}
         onCollapse={(collapsed, type) => {
           // console.log(collapsed, type);
         }}
@@ -81,7 +94,8 @@ const Dashboard = ({user}) => {
                 isModalOpen,
                 handleOk,
                 handleCancel,
-                user
+                user,
+                deleteProduct
               )}
             </div>
           )}

@@ -29,7 +29,8 @@ const items = [
   getItem("My Profile", "sub2", <AppstoreOutlined />, [
     getItem("Profile", "6"),
     getItem("Add Product", "7"),
-    getItem("Logout", "8"),
+    getItem("My Product", "8"),
+    getItem("Logout", "9"),
   ]),
 ];
 const CustomMenu = ({currPage, setPage}) => {

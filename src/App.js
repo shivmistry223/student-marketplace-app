@@ -17,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard user={user}/>} />
         <Route path="/product-detail/:id" element={<ProductDetails user={user}/>} />
         <Route path="/product-form" element={<ProductForm user={user}/>} />
+        <Route path="*" element={<Login setUser={setUser} />} />
       </Routes>
     </Router>
   );

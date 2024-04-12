@@ -155,7 +155,14 @@ export const MENU_OPTIONS = [
   },
   {
     page: "8",
+    type: "myProduct",
+    title: "My Product",
+  },
+  
+  {
+    page: "9",
     type: "Logout",
     title: "Logout",
   },
+
 ];

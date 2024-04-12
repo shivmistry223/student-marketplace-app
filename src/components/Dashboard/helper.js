@@ -15,7 +15,8 @@ export const renderMenu = (
   isModalOpen,
   handleOk,
   handleCancel,
-  user
+  user,
+  deleteProduct
 ) => {
   switch (currPage) {
     case "1":
@@ -23,11 +24,13 @@ export const renderMenu = (
     case "3":
     case "4":
     case "5":
+    case "8":
       return (
         <div className={styles.main}>
           {products &&
             products.map((item, index) => (
-              <Product key={index}  currPage={currPage} setPage={setPage} {...item} />
+              <Product key={index}  currPage={currPage} setPage={setPage} deleteProduct={deleteProduct}
+              {...item} />
             ))}
         </div>
       );
@@ -36,7 +39,7 @@ export const renderMenu = (
         return <MyProfileForm user={user}/>
     case "7":
       return <ProductForm onFinish={onFinish} />;
-    case "8":
+    case "9":
       return (
         <Modal
           title="Logout"

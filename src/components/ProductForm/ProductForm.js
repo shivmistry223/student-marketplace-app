@@ -9,20 +9,30 @@ const { Dragger } = Upload;
 const ProductForm = ({ initialValues }) => {
   //   const [form] = useForm();
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+
+    const formData = new FormData();
+
+    formData.append('productName', values['name'])
+    formData.append('productdescription', values['description'])
+    formData.append('file', file)
+    formData.append('productCatagory', values['type'])
+    formData.append('productPrice', values['price'])
 
     setLoading(true);
     fetch(PRODUCT, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: values,
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        window.location.href = "/login";
+        window.location.href = "/dashboard";
       })
       .catch((e) => setLoading(false));
   };
@@ -49,7 +59,9 @@ const ProductForm = ({ initialValues }) => {
     { label: "Electronics", value: "electronic" },
     { label: "Sports", value: "sport" },
   ];
-
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
   return (
     <Form
       initialValues={initialValues}
@@ -72,18 +84,7 @@ const ProductForm = ({ initialValues }) => {
           { required: true, message: "Please upload the product image." },
         ]}
       >
-        <Dragger {...{ handleImageUpload }}>
-          <p className="ant-upload-drag-icon">
-            <UploadOutlined />
-          </p>
-          <p className="ant-upload-text">
-            Click or drag file to this area to upload
-          </p>
-          <p className="ant-upload-hint">
-            Support for a single or multiple files. Strictly prohibit from
-            uploading company data or other band files.
-          </p>
-        </Dragger>
+        <Input type="file" onChange={handleFileChange}/>
       </Form.Item>
 
       <Form.Item
