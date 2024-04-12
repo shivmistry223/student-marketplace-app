@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Select, Upload, message, Button } from "antd";
 import styles from "./ProductForm.module.scss";
 import { UploadOutlined } from "@ant-design/icons";
-import { PRODUCT } from "../constant";
+import { PRODUCT, PRODUCTUPDATE } from "../constant";
 import { getUserId } from "../Helper";
+import { useLocation, useParams } from "react-router-dom";
+
 
 const { Dragger } = Upload;
 
@@ -16,6 +18,8 @@ const ProductForm = ({  }) => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
 
+    const url = PRODUCT
+    const type = 'post'
     const formData = new FormData();
     const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);
     const product = {
@@ -24,10 +28,13 @@ const ProductForm = ({  }) => {
       'productCatagory' :values['type'],
       'productPrice':values['price']
     }
+  
     if(state.id){
-      product['id'] = id
+      product['id'] = state.id
+      url = PRODUCTUPDATE
+      type = "put"
     }
-    
+
     formData.append('file', file)
     formData.append('products', JSON.stringify(product));
     formData.append('userId', getUserId());

@@ -43,7 +43,7 @@ const MyProfileForm = ({user}) => {
     }
     setLoading(true);
     fetch(PROFILE, {
-      method: "post",
+      method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
