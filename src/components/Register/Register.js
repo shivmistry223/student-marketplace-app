@@ -15,9 +15,16 @@ const Register = () => {
     fetch(REGISTER, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: values,
+      body: JSON.stringify(values),
     })
-      .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then(errorMessage => {
+          throw new Error(errorMessage);
+        });
+      }
+      return response.json();
+    })
       .then((data) => {
         setLoading(false);
         messageApi.open({
@@ -31,7 +38,7 @@ const Register = () => {
         console.log(e);
         messageApi.open({
           type: "Error",
-          content: "error",
+          content: e.message,
         });
       });
   };

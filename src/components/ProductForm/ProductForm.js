@@ -18,7 +18,6 @@ const ProductForm = ({  }) => {
     console.log("Received values of form: ", values);
 
     const formData = new FormData();
-    const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);
     const product = {
       'productname' : values['name'],
       'productdescription' : values['description'],

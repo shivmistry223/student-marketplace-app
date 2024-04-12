@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./MyProfileForm.module.scss";
 import { PROFILE } from "../constant";
@@ -24,17 +24,32 @@ const validateToNextPassword = (rule, value, callback) => {
 const MyProfileForm = ({user}) => {
   const [loading, setLoading] = useState(false);
   const [initialValues, setInitialValues] = useState(JSON.parse(localStorage.getItem('user')));
+  const [messageApi, contextHolder] = message.useMessage();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    setLoading(true);
-    fetch(PROFILE)
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-      })
-      .catch((e) => setLoading(false));
-  }, []);
+  //   setLoading(true);
+  //   fetch(PROFILE)
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       return response.text().then(errorMessage => {
+  //         throw new Error(errorMessage);
+  //       });
+  //     }
+  //     return response.json();
+  //   })
+  //     .then((data) => {
+  //       setLoading(false);
+  //     })
+  //     .catch((e) => {
+  //       setLoading(false);
+  //       console.log(e.message);
+  //       messageApi.open({
+  //         type: "Error",
+  //         content: e.message,
+  //       });
+  //     });
+  // }, []);
 
   const onFinish = (values) => {
     values = {
@@ -47,12 +62,26 @@ const MyProfileForm = ({user}) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then((response) => response.json())
+    .then((response) => {
+          if (!response.ok) {
+            return response.text().then(errorMessage => {
+              throw new Error(errorMessage);
+            });
+          }
+          return response.json();
+        })
       .then((data) => {
         setLoading(false);
         window.location.href = "/dashboard";
       })
-      .catch((e) => setLoading(false));
+      .catch((e) => {
+              setLoading(false);
+              console.log(e.message);
+              messageApi.open({
+                type: "Error",
+                content: e.message,
+              });
+            });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -63,7 +92,8 @@ const MyProfileForm = ({user}) => {
     console.log("Image uploaded:", file);
   };
 
-  return (
+  return (<>
+    {contextHolder}
     <Form
       className={styles.myProfileForm}
       //   form={form}
@@ -165,7 +195,7 @@ const MyProfileForm = ({user}) => {
           Update
         </Button>
       </Form.Item>
-    </Form>
+    </Form></>
   );
 };
 
