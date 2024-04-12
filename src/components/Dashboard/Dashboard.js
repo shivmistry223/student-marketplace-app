@@ -33,13 +33,9 @@ const Dashboard = ({ user }) => {
     setPage("1");
   };
   const deleteProduct = (id) => {
-    fetch(`${DELETE}`, {
-      method: "post",
-      body: {
-        userId: JSON.parse(localStorage.getItem('user')).id,
-        productId : id
-      },
-    })
+    fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem('user')).id}`, {
+      method: "delete",
+    })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);

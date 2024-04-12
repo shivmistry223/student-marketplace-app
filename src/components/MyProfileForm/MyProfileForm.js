@@ -3,6 +3,7 @@ import { Form, Input, Button, Select } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./MyProfileForm.module.scss";
 import { PROFILE } from "../constant";
+import { getUserId } from "../Helper";
 
 const productTypes = [
   { label: "Term 1", value: 1 },
@@ -36,11 +37,15 @@ const MyProfileForm = ({user}) => {
   }, []);
 
   const onFinish = (values) => {
+    values = {
+      id:getUserId(),
+      ...values
+    }
     setLoading(true);
     fetch(PROFILE, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: values,
+      body: JSON.stringify(values),
     })
       .then((response) => response.json())
       .then((data) => {

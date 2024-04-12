@@ -3,14 +3,16 @@ import { Form, Input, Select, Upload, message, Button } from "antd";
 import styles from "./ProductForm.module.scss";
 import { UploadOutlined } from "@ant-design/icons";
 import { PRODUCT } from "../constant";
+import { getUserId } from "../Helper";
 
 const { Dragger } = Upload;
 
-const ProductForm = ({ initialValues }) => {
+const ProductForm = ({  }) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
+  let { state } = useLocation();
 
-
+  const [initialValues, setInitialValues] = useState()
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
 
@@ -22,9 +24,13 @@ const ProductForm = ({ initialValues }) => {
       'productCatagory' :values['type'],
       'productPrice':values['price']
     }
+    if(state.id){
+      product['id'] = id
+    }
+    
     formData.append('file', file)
     formData.append('products', JSON.stringify(product));
-    formData.append('userId', 1);
+    formData.append('userId', getUserId());
    
     setLoading(true);
     fetch(PRODUCT, {
@@ -64,6 +70,23 @@ const ProductForm = ({ initialValues }) => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
+
+  useEffect(() => {
+
+    setLoading(true);
+    fetch(`${PRODUCT}/${state.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+        setInitialValues(data);
+      })
+      .catch((e) => {
+        setLoading(false)
+        window.location.href = '/dashboard'
+      }); 
+  },[]);
+
+
   return (
     <Form
       initialValues={initialValues}

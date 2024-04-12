@@ -17,3 +17,5 @@ export const isOwnProduct = (id) => {
   return id === JSON.parse(localStorage.getItem("user")).id;
 };
 
+
+export const getUserId = () => JSON.parse(localStorage.getItem('user')).id

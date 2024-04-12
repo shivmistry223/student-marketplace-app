@@ -43,7 +43,7 @@ export const renderMenu = (
         return (
           <div className={styles.main}>
              {products &&
-               products.filter(element => isOwnProduct(element.id)).map((item, index) => (
+               products.filter(element => isOwnProduct(element.user.id)).map((item, index) => (
                  <Product key={index}  currPage={currPage} setPage={setPage} deleteProduct={deleteProduct}
                  {...item} />
                ))}

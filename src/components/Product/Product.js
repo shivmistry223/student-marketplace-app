@@ -26,6 +26,13 @@ const Product = ({
     navigate(`/product-detail/${id}`, { state: props });
   };
 
+  const handleUpdate = () => {
+    const props = {
+      id,
+    };
+    navigate(`/product-form`, { state: props });
+  };
+  
   
 
   return (
@@ -50,6 +57,7 @@ const Product = ({
           <Button onClick={() => deleteProduct(id)}>
             <DeleteOutlined />
           </Button>
+          <Button onClick={handleUpdate}>Update</Button>
         </div>
       )}
     </Card>
