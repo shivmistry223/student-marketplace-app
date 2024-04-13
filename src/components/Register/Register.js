@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Layout, Select, message } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, PhoneOutlined, UserSwitchOutlined, BookOutlined } from "@ant-design/icons";
 import styles from "../Login/Login.module.scss";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { REGISTER } from "../constant";
@@ -98,7 +98,7 @@ const Register = () => {
             // rules={[{ required: true, message: 'Please re-enter your password!' }]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              prefix={<PhoneOutlined className="site-form-item-icon" />}
               type="phone"
               placeholder="Phone Number"
             />
@@ -108,7 +108,7 @@ const Register = () => {
             // rules={[{ required: true, message: 'Please re-enter your password!' }]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              prefix={<UserSwitchOutlined className="site-form-item-icon" />}
               type="text"
               placeholder="First Name"
             />
@@ -118,7 +118,7 @@ const Register = () => {
             // rules={[{ required: true, message: 'Please re-enter your password!' }]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              prefix={<UserSwitchOutlined className="site-form-item-icon" />}
               type="text"
               placeholder="Last Name"
             />
@@ -128,7 +128,7 @@ const Register = () => {
             // rules={[{ required: true, message: 'Please re-enter your password!' }]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              prefix={<BookOutlined className="site-form-item-icon" />}
               type="text"
               placeholder="Course Number"
             />
