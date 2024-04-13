@@ -61,7 +61,7 @@ const Register = () => {
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
-          <div className={styles.formHeader}>College MarketPlace</div>
+          <div className={styles.formHeader}>Lambton MarketPlace</div>
           <Form.Item
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
