@@ -12,18 +12,20 @@ const { Content, Footer, Sider } = Layout;
 const ProductDetails = () => {
   useEffect(() => {
     setLoading(true);
-    console.log('hii');
+    console.log("hii");
     fetch(`${PRODUCTDETAILS}/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
+        console.log(data, "product");
         setProduct(data);
       })
       .catch((e) => {
+        console.log(e.message);
         setLoading(false);
-        window.location.href = "/dashboard";
+        // window.location.href = "/dashboard";
       });
-  },[]);
+  }, []);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -33,26 +35,7 @@ const ProductDetails = () => {
   let { state } = useLocation();
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [product, setProduct] = useState(
-    {
-      id:1,
-      productname: "Shiv",
-      productPrice: 11111,
-      productimageUrl:
-        "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
-      img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
-      ownerName: "Shiv MIstry",
-      productdescription:"",
-      user: {
-        id: 2,
-        phoneNumber: "123-456-7890",
-        firstName: "jaivik",
-        lastName: "patel",
-        courseCode: "FSDM",
-        termNo: "2"
-      }
-    }
-  );
+  const [product, setProduct] = useState({});
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -87,22 +70,24 @@ const ProductDetails = () => {
               <div className={styles.productDetail}>
                 <div className={styles.productImage}>
                   <img
+                    // src={product.productimageUrl}
                     src={IMAGEDIR + product.productimageUrl}
                     alt={product.productname}
                   />
                 </div>
                 <div className={styles.productInfo}>
-                  <h2 className={styles.productName}>{product.productname}</h2>
+                  <h2 className={styles.productName}>{product.productName}</h2>
                   <p className={styles.productPrice}>${product.productPrice}</p>
                   <p className={styles.productDescription}>
-                    {product.productdescription}
+                    {product.productDescription}
                   </p>
+                  <h3>Seller Information</h3>
                   <div className={styles.ownerDiv}>
                     <div className={styles.own}>
                       <UserOutlined style={{ fontSize: "30px" }} />
                       <p className={styles.ownerName}>
                         {" "}
-                        {`${product.user.firstName} ${product.user.lastName}`}
+                        {`${product?.productOwner?.firstName} ${product?.productOwner?.lastName}`}
                       </p>
                     </div>
                     <Button className={styles.button} onClick={showModal}>
@@ -118,7 +103,7 @@ const ProductDetails = () => {
                 onCancel={handleCancel}
               >
                 <p>Contact Number</p>
-                <p>{product.user.phoneNumber}</p>
+                <p>{product?.productOwner?.phoneNumber}</p>
               </Modal>
             </div>
           )}

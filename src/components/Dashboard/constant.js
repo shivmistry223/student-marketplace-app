@@ -1,29 +1,28 @@
-export const product = 
-[
+export const product = [
   {
-    id:1,
-    productname: "Shiv",
+    id: 1,
+    productname: "Air Jordan",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
-    productdescription:"",
+    productdescription: "",
     user: {
       id: 2,
       phoneNumber: "123-456-7890",
-    firstName: "jaivik",
+      firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
 
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -32,14 +31,14 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -48,14 +47,14 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -64,14 +63,14 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -80,14 +79,14 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/images/g/KVUAAOSwFbZhs7oE/s-l1200.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -96,14 +95,14 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
+      termNo: "2",
+    },
   },
   {
     productname: "Shiv",
     productPrice: 11111,
     productimageUrl:
-      "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
+      "https://i.ebayimg.com/thumbs/images/g/GcMAAOSwHZFk-V2b/s-l500.jpg",
     img: "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/434953381_7291017717642434_6574733615425314777_n.jpg?stp=c0.29.261.261a_dst-jpg_p261x260&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulK7vQJfJAkAb4Q7sM8&_nc_ht=scontent-ord5-1.xx&oh=00_AfC7AnUZCH3SF8byz1RlkHNPYHI8hGct-nECNAqDjSFMfA&oe=66177E69",
     ownerName: "Shiv MIstry",
     user: {
@@ -112,9 +111,9 @@ export const product =
       firstName: "jaivik",
       lastName: "patel",
       courseCode: "FSDM",
-      termNo: "2"
-    }
-  }
+      termNo: "2",
+    },
+  },
 ];
 
 export const MENU_OPTIONS = [
@@ -158,11 +157,10 @@ export const MENU_OPTIONS = [
     type: "myProduct",
     title: "My Product",
   },
-  
+
   {
     page: "9",
     type: "Logout",
     title: "Logout",
   },
-
 ];

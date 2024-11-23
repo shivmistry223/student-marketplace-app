@@ -17,7 +17,7 @@ const Dashboard = ({ user }) => {
   } = theme.useToken();
 
   const [currPage, setPage] = useState("1");
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(product);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -33,13 +33,14 @@ const Dashboard = ({ user }) => {
     setPage("1");
   };
   const deleteProduct = (id) => {
-    fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem("user")).id}`, {
+    // fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem("user")).id}`, {
+    fetch(`${DELETE}/${id}`, {
       method: "delete",
     })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        console.log('inside delete')
+        console.log("inside delete");
         apiCall(currPage);
       })
       .catch((e) => setLoading(false));
@@ -47,30 +48,31 @@ const Dashboard = ({ user }) => {
 
   const apiCall = (page) => {
     setLoading(true);
-    const id = JSON.parse(localStorage.getItem("user")).id;
+    const id = JSON.parse(localStorage.getItem("user"))._id;
     const url =
       page == "8"
-        ? `${MYPRODUCT}/${id}`
-        : `${DASHBOARD}/${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
+        ? `${DASHBOARD}?ownerId=${id}`
+        : `${DASHBOARD}?category=${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
     fetch(url)
       .then((response) => {
-      if (!response.ok) {
-        return response.text().then(errorMessage => {
-          throw new Error(errorMessage);
-        });
-      }
-      return response.json();
-    })
+        if (!response.ok) {
+          return response.text().then((errorMessage) => {
+            throw new Error(errorMessage);
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         setLoading(false);
         setProducts(data);
-        console.log(data,'inside main')
+        console.log(data, "inside main");
         setPage(page);
       })
       .catch((e) => {
-        console.log(e)
+        console.log(e);
         setProducts([]);
-        setLoading(false)});
+        setLoading(false);
+      });
   };
 
   useEffect(() => {

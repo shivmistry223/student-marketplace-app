@@ -6,39 +6,44 @@ import { PRODUCT, PRODUCTUPDATE } from "../constant";
 import { getUserId } from "../Helper";
 import { useLocation, useParams } from "react-router-dom";
 
-
 const { Dragger } = Upload;
 
-const ProductForm = ({  }) => {
+const ProductForm = ({}) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
 
-  const [initialValues, setInitialValues] = useState()
+  const [initialValues, setInitialValues] = useState();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
 
     const formData = new FormData();
     const product = {
-      'productname' : values['name'],
-      'productdescription' : values['description'],
-      'productCatagory' :values['type'],
-      'productPrice':values['price']
-    }
-  
+      productName: values["name"],
+      productDescription: values["description"],
+      productCatagory: values["type"],
+      productPrice: values["price"],
+    };
 
-    formData.append('file', file)
-    formData.append('products', JSON.stringify(product));
-    formData.append('userId', getUserId());
-   
+    formData.append("productName", values["name"]);
+    formData.append("productDescription", values["description"]);
+    formData.append("productCatagory", values["type"]);
+    formData.append("productPrice", values["price"]);
+    formData.append("productImage", file);
+    // formData.append("products", JSON.stringify(product));
+    formData.append("productOwner", getUserId());
+
     setLoading(true);
     fetch(PRODUCT, {
       method: "post",
       body: formData,
+      headers: new Headers({
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-       window.location.href = "/dashboard";
+        window.location.href = "/dashboard";
       })
       .catch((e) => setLoading(false));
   };
@@ -69,8 +74,6 @@ const ProductForm = ({  }) => {
     setFile(e.target.files[0]);
   };
 
-
-
   return (
     <Form
       initialValues={initialValues}
@@ -93,7 +96,7 @@ const ProductForm = ({  }) => {
           { required: true, message: "Please upload the product image." },
         ]}
       >
-        <Input type="file" onChange={handleFileChange}/>
+        <Input type="file" onChange={handleFileChange} />
       </Form.Item>
 
       <Form.Item

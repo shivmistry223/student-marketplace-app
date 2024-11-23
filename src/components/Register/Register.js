@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Layout, Select, message } from "antd";
-import { UserOutlined, LockOutlined, PhoneOutlined, UserSwitchOutlined, BookOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  LockOutlined,
+  PhoneOutlined,
+  UserSwitchOutlined,
+  BookOutlined,
+} from "@ant-design/icons";
 import styles from "../Login/Login.module.scss";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { REGISTER } from "../constant";
@@ -11,20 +17,24 @@ const Register = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values) => {
+    console.log(values);
     setLoading(true);
     fetch(REGISTER, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      },
       body: JSON.stringify(values),
     })
-    .then((response) => {
-      if (!response.ok) {
-        return response.text().then(errorMessage => {
-          throw new Error(errorMessage);
-        });
-      }
-      return response.json();
-    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((errorMessage) => {
+            throw new Error(errorMessage);
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         setLoading(false);
         messageApi.open({
@@ -63,12 +73,12 @@ const Register = () => {
         >
           <div className={styles.formHeader}>Lambton MarketPlace</div>
           <Form.Item
-            name="username"
+            name="userName"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
+              placeholder="UserName"
             />
           </Form.Item>
           <Form.Item

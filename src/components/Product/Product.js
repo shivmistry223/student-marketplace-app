@@ -7,14 +7,15 @@ import { DELETE, IMAGEDIR } from "../constant";
 import { isOwnProduct } from "../Helper";
 
 const Product = ({
-  id,
+  _id,
   productimageUrl,
-  productname,
+  productName,
   productPrice,
   user,
   currPage,
   setPage,
   deleteProduct,
+  productOwner,
 }) => {
   const navigate = useNavigate();
 
@@ -23,38 +24,36 @@ const Product = ({
       fromProduct: true,
       currPage,
     };
-    navigate(`/product-detail/${id}`, { state: props });
+    navigate(`/product-detail/${_id}`, { state: props });
   };
 
   const handleUpdate = () => {
     const props = {
-      id,
+      _id,
     };
     navigate(`/product-form`, { state: props });
   };
-  
-  
 
   return (
     <Card className={Styles.card}>
       <Image
         src={IMAGEDIR + productimageUrl}
-        alt={productname}
+        alt={productName}
         className={Styles.cardImage}
       />
       <div className={Styles.cardContent} onClick={handleClick}>
-        <p className={Styles.cardTitle}>{productname}</p>
+        <p className={Styles.cardTitle}>{productName}</p>
         <p className={Styles.cardPrice}>${productPrice}</p>
         <div className={Styles.ownerContainer}>
           <UserOutlined />
-          <p
-            className={Styles.cardOwnerName}
-          >{`${user.firstName} ${user.lastName} `}</p>
+          <p className={Styles.cardOwnerName}>
+            {`${productOwner?.firstName} ${productOwner?.lastName} `}
+          </p>
         </div>
       </div>
-      {isOwnProduct(user.id) && (
+      {isOwnProduct(productOwner?._id) && (
         <div className={Styles.buttonDiv}>
-          <Button onClick={() => deleteProduct(id)}>
+          <Button onClick={() => deleteProduct(_id)}>
             <DeleteOutlined />
           </Button>
         </div>

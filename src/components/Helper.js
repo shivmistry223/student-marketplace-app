@@ -14,8 +14,10 @@ export const logOut = () => {
 };
 
 export const isOwnProduct = (id) => {
-  return id === JSON.parse(localStorage.getItem("user")).id;
+  return id === JSON.parse(localStorage.getItem("user"))._id;
 };
 
-
-export const getUserId = () => JSON.parse(localStorage.getItem('user')).id
+export const getUserId = () =>
+  localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))._id
+    : null;
