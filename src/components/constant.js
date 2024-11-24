@@ -9,6 +9,7 @@ export const DELETE = "http://localhost:8080/product";
 export const IMAGEDIR = "http://localhost:8080";
 export const MYPRODUCT = "http://localhost:8080/product/me";
 export const PRODUCTDETAILS = "http://localhost:8080/product";
+export const PRODUCTSEARCH = "http://localhost:8080/products/search";
 
 export const USER = {
   id: 4,

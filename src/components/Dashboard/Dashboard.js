@@ -8,7 +8,7 @@ import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
 import { logOut } from "../Helper";
-import { DASHBOARD, DELETE, MYPRODUCT } from "../constant";
+import { DASHBOARD, DELETE, MYPRODUCT,PRODUCTSEARCH } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = ({ user }) => {
@@ -75,6 +75,25 @@ const Dashboard = ({ user }) => {
       });
   };
 
+  const handleSearch = (searchQuery)=>{
+      const url = `${PRODUCTSEARCH}/?category=${MENU_OPTIONS[parseInt(currPage) - 1].type}&name=${searchQuery}`;
+      fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((errorMessage) => {
+            throw new Error(errorMessage);
+          });
+        }
+        return response.json();
+      }).then((data) => {
+        setLoading(false);
+        setProducts(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   useEffect(() => {
     console.log(user);
     apiCall(currPage);
@@ -93,7 +112,7 @@ const Dashboard = ({ user }) => {
         <CustomMenu currPage={currPage} setPage={setPage} />
       </Sider>
       <Layout className={styles.container}>
-        <CustomHeader />
+      <CustomHeader onSearch={handleSearch} />
         <Content className={styles.mainContainer}>
           {loading ? (
             <Skeleton />
