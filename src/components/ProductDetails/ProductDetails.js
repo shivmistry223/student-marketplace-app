@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, theme, Skeleton, Button, Modal } from "antd";
+import { Layout, theme, Skeleton, Button, Modal, Card } from "antd";
 import styles from "../Dashboard/Dashboard.module.scss";
 import CustomMenu from "../Menu/CustomMenu";
 import CustomHeader from "../CustomHeader/CustomHeader";
@@ -78,6 +78,7 @@ const ProductDetails = () => {
                 <div className={styles.productInfo}>
                   <h2 className={styles.productName}>{product.productName}</h2>
                   <p className={styles.productPrice}>${product.productPrice}</p>
+                  <span>Description</span>
                   <p className={styles.productDescription}>
                     {product.productDescription}
                   </p>
@@ -91,7 +92,7 @@ const ProductDetails = () => {
                       </p>
                     </div>
                     <Button className={styles.button} onClick={showModal}>
-                      Contact Owner
+                      See Details
                     </Button>
                   </div>
                 </div>
@@ -102,8 +103,36 @@ const ProductDetails = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
               >
-                <p>Contact Number</p>
-                <p>{product?.productOwner?.phoneNumber}</p>
+                {/* <p>Contact Number</p>
+                <p>{product?.productOwner?.phoneNumber}</p> */}
+                <Card className={styles.ownerCard}>
+                  <div className={styles.ownerCardHeader}>
+                    <UserOutlined
+                      style={{ fontSize: "40px", color: "#4caf50" }}
+                    />
+                    <h3 className={styles.ownerName}>
+                      {`${product?.productOwner?.firstName} ${product?.productOwner?.lastName}`}
+                    </h3>
+                  </div>
+                  <div className={styles.ownerCardBody}>
+                    <p className={styles.ownerInfo}>
+                      <strong>Email:</strong>{" "}
+                      {product?.productOwner?.userName || "N/A"}
+                    </p>
+                    <p className={styles.ownerInfo}>
+                      <strong>Phone:</strong>{" "}
+                      {product?.productOwner?.phoneNumber || "N/A"}
+                    </p>
+                    <p className={styles.ownerInfo}>
+                      <strong>Course Code:</strong>{" "}
+                      {product?.productOwner?.courseCode || "Not Provided"}
+                    </p>
+                    <p className={styles.ownerInfo}>
+                      <strong>Term:</strong>{" "}
+                      {product?.productOwner?.termNo || "Not Provided"}
+                    </p>
+                  </div>
+                </Card>
               </Modal>
             </div>
           )}

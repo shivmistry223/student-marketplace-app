@@ -144,22 +144,28 @@ export const MENU_OPTIONS = [
   },
   {
     page: "6",
-    type: "sport",
+    type: "My Profile",
     title: "Profile",
   },
   {
     page: "7",
+    type: "My Profile",
+    title: "Reset Password",
+  },
+
+  {
+    page: "8",
     type: "Profile",
     title: "New Product",
   },
   {
-    page: "8",
+    page: "9",
     type: "myProduct",
     title: "My Product",
   },
 
   {
-    page: "9",
+    page: "10",
     type: "Logout",
     title: "Logout",
   },

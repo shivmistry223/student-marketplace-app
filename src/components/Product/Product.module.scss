@@ -1,56 +1,144 @@
+// .card {
+//   width: 250px;
+//   border-radius: 10px;
+//   overflow: hidden;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   > div {
+//     padding: 0 !important;
+//   }
+//   .cardImage {
+//     width: 100%;
+//     height: 250px;
+//     object-fit: cover;
+//   }
+
+//   .cardContent {
+//     padding: 20px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     text-align: center;
+//     cursor: pointer;
+
+//     p {
+//       margin: 0;
+//     }
+
+//     .cardTitle {
+//       font-size: 24px;
+//     }
+
+//     .cardPrice {
+//       font-size: 18px;
+//       font-weight: bold;
+//     }
+
+//     .ownerContainer {
+//       display: flex;
+//       gap: 5px;
+
+//       .ownerImg {
+//         width: 20px;
+//         height: 20px;
+//         border-radius: 50%;
+//       }
+//       .cardOwnerName {
+//         font-size: 14px;
+//         color: #666;
+//       }
+//     }
+//   }
+//   .buttonDiv {
+//     padding: 0 20px 20px 20px;
+//     display: flex;
+//     justify-content: end;
+//   }
+// }
+
 .card {
-  width: 250px;
+  width: 300px;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  > div {
-    padding: 0 !important;
-  }
-  .cardImage {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
+  background-color: #ffffff;
+  transition: transform 0.3s, box-shadow 0.3s;
 
-  .cardContent {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.cardContent {
+  padding: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.cardPrice {
+  font-size: 1rem;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.ownerContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  color: #555;
+
+  .anticon {
+    margin-right: 8px;
+  }
+}
+
+.cardOwnerName {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.buttonDiv {
+  text-align: right;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+
+  button {
+    background-color: #f44336;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: background-color 0.3s;
 
-    p {
-      margin: 0;
+    &:hover {
+      background-color: #d32f2f;
     }
 
-    .cardTitle {
-      font-size: 24px;
+    .anticon {
+      margin-right: 5px;
     }
-
-    .cardPrice {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .ownerContainer {
-      display: flex;
-      gap: 5px;
-
-      .ownerImg {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-      }
-      .cardOwnerName {
-        font-size: 14px;
-        color: #666;
-      }
-    }
-  }
-  .buttonDiv {
-    padding: 0 20px 20px 20px;
-    display: flex;
-    justify-content: end;
   }
 }

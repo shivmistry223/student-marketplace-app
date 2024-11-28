@@ -1,40 +1,92 @@
+// .productForm {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+//   align-items: stretch;
+//   justify-content: center;
+//   max-width: 600px;
+//   width: 100%;
+//   .antForm {
+//     .antFormItem {
+//       margin-bottom: 16px;
+//     }
+//   }
+
+//   .antUploadDrag {
+//     .antUploadDragIcon {
+//       font-size: 32px;
+//       color: #1890ff;
+//     }
+
+//     .antUploadText {
+//       font-size: 16px;
+//       color: #666;
+//       margin-top: 8px;
+//     }
+
+//     .antUploadHint {
+//       font-size: 14px;
+//       color: #999;
+//       margin-top: 8px;
+//     }
+//   }
+
+//   .antBtnPrimary {
+//     .ant-btn-primary {
+//       background-color: #1890ff;
+//       border-color: #1890ff;
+//     }
+//   }
+// }
+
 .productForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-    justify-content: center;
-    max-width: 600px;
-    width: 100%;
-    .antForm {
-      .antFormItem {
-        margin-bottom: 16px;
-      }
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .ant-form-item {
+    margin-bottom: 20px;
+
+    &-label {
+      text-align: left;
     }
-  
-    .antUploadDrag {
-      .antUploadDragIcon {
-        font-size: 32px;
-        color: #1890ff;
-      }
-  
-      .antUploadText {
-        font-size: 16px;
-        color: #666;
-        margin-top: 8px;
-      }
-  
-      .antUploadHint {
-        font-size: 14px;
-        color: #999;
-        margin-top: 8px;
-      }
-    }
-  
-    .antBtnPrimary {
-      .ant-btn-primary {
-        background-color: #1890ff;
+
+    .ant-input,
+    .ant-select-selector,
+    .ant-input-number {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: all 0.3s;
+
+      &:focus {
         border-color: #1890ff;
+        box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
       }
     }
   }
+
+  .ant-input-textarea {
+    resize: none;
+  }
+
+  .ant-btn-primary {
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+
+    &:hover {
+      background: linear-gradient(135deg, #388e3c, #66bb6a);
+    }
+  }
+}

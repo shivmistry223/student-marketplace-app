@@ -25,19 +25,18 @@ const items = [
   getItem("Books", "2", <DesktopOutlined />),
   getItem("Clothing", "3", <DesktopOutlined />),
   getItem("Electronic", "4", <ContainerOutlined />),
-  getItem("Sports", "5",<MailOutlined />),
+  getItem("Sports", "5", <MailOutlined />),
   getItem("My Profile", "sub2", <AppstoreOutlined />, [
     getItem("Profile", "6"),
-    getItem("Add Product", "7"),
-    getItem("My Product", "8"),
-    getItem("Logout", "9"),
+    getItem("Reset Password", "7"),
+    getItem("Add Product", "8"),
+    getItem("My Product", "9"),
+    getItem("Logout", "10"),
   ]),
 ];
-const CustomMenu = ({currPage, setPage}) => {
+const CustomMenu = ({ currPage, setPage }) => {
   return (
-    <div
-     className={Styles.menuContainer}
-    >
+    <div className={Styles.menuContainer}>
       <div className={Styles.headerContainer}>Lambton MarketPlace</div>
       <Menu
         theme="dark"

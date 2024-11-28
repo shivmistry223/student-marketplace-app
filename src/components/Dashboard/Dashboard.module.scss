@@ -1,76 +1,76 @@
 .container {
-    height: 100vh;
+  height: 100vh;
 
-    .mainContainer {
-        margin: 24px 16px 0;
-        overflow-y: auto;
-        .main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap:20px;
-            padding: 20px 10px;
-        }
+  .mainContainer {
+    margin: 24px 16px 0;
+    overflow-y: auto;
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      padding: 20px 10px;
     }
+  }
 }
 .productDetail {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    max-width: 800px;
-  
-    .productImage {
-      flex: 1 1 400px;
-      margin-right: 32px;
-      
-      img {
-          width: 100%;
-          height: 500px;
-          border-radius: 8px;
-      }
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 800px;
+
+  .productImage {
+    flex: 1 1 400px;
+    margin-right: 32px;
+
+    img {
+      width: 100%;
+      height: 500px;
+      border-radius: 8px;
     }
-  
-    .productInfo {
-      flex: 1 1 400px;
+  }
+
+  .productInfo {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .productName {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .productPrice {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .productDescription {
+      margin-bottom: 32px;
+    }
+
+    .ownerDiv {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-  
-      .productName {
-        font-size: 2rem;
-        margin-bottom: 16px;
-      }
-  
-      .productPrice {
-        font-size: 1.5rem;
-        margin-bottom: 16px;
-        font-weight: bold;
-      }
-  
-      .productDescription {
-        margin-bottom: 32px;
-      }
+      justify-content: space-between;
+      align-items: center;
 
-      .ownerDiv{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .own{
+      .own {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 20px;
 
         img {
-            width: 90px;
-            border-radius: 50%;
+          width: 90px;
+          border-radius: 50%;
         }
-         p {
-            font-size: 24px;
-         }
+        p {
+          font-size: 24px;
+        }
       }
-  
+
       .button {
         background-color: #f04;
         color: #fff;
@@ -78,5 +78,121 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.container {
+  background-color: #f0f2f5;
+}
+
+.mainContainer {
+  padding: 20px;
+}
+
+.allProduct {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.productDetail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.productImage {
+  flex: 1;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.productInfo {
+  flex: 2;
+
+  .productName {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .productPrice {
+    font-size: 1.5rem;
+    color: #4caf50;
+    margin: 10px 0;
+  }
+
+  .productDescription {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .ownerDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .own {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .ownerName {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    .button {
+      background-color: #1890ff;
+      color: #fff;
+      border-radius: 5px;
+      padding: 8px 20px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #40a9ff;
+      }
     }
   }
+}
+
+.ant-modal {
+  .ant-modal-content {
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .ant-modal-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
+.ant-skeleton {
+  border-radius: 10px;
+}
+
+footer {
+  background-color: #001529;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}

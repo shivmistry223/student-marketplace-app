@@ -1,33 +1,53 @@
+.profileCard {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .formTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
 .myProfileForm {
-    .antForm {
-      .antFormItem {
-        margin-bottom: 16px;
-      }
+  .ant-form-item {
+    margin-bottom: 20px;
+
+    label {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #555;
     }
-  
-    .antUploadDrag {
-      .antUploadDragIcon {
-        font-size: 32px;
-        color: #1890ff;
-      }
-  
-      .antUploadText {
-        font-size: 16px;
-        color: #666;
-        margin-top: 8px;
-      }
-  
-      .antUploadHint {
-        font-size: 14px;
-        color: #999;
-        margin-top: 8px;
-      }
+
+    .ant-input,
+    .ant-select-selector {
+      border-radius: 5px;
+      padding: 10px;
     }
-  
-    .antBtnPrimary {
-      .ant-btn-primary {
-        background-color: #1890ff;
-        border-color: #1890ff;
-      }
+
+    .ant-input:focus,
+    .ant-select-selector:focus {
+      border-color: #1890ff;
+      box-shadow: 0 0 4px rgba(24, 144, 255, 0.5);
     }
   }
+}
+
+.updateButton {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}

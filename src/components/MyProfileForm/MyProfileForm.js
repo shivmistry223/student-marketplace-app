@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Select, message } from "antd";
+import { Form, Input, Button, Select, message, Card } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import styles from "./MyProfileForm.module.scss";
 import { PROFILE } from "../constant";
-import { getUserId } from "../Helper";
+import { getUserId, setUserData } from "../Helper";
 
 const productTypes = [
   { label: "Term 1", value: 1 },
@@ -80,7 +80,12 @@ const MyProfileForm = ({ user }) => {
       })
       .then((data) => {
         setLoading(false);
-        window.location.href = "/dashboard";
+        setUserData(data);
+        messageApi.open({
+          type: "Success",
+          content: "Updated Profile",
+        });
+        // window.location.href = "/dashboard";
       })
       .catch((e) => {
         setLoading(false);
@@ -103,112 +108,82 @@ const MyProfileForm = ({ user }) => {
   return (
     <>
       {contextHolder}
-      <Form
-        className={styles.myProfileForm}
-        //   form={form}
-        initialValues={initialValues}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          name="userName"
-          rules={[{ required: true, message: "Please input your username!" }]}
+      <Card className={styles.profileCard}>
+        <Form
+          className={styles.myProfileForm}
+          initialValues={initialValues}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
         >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="UserName"
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item
-          name="re-password"
-          rules={[
-            { required: true, message: "Please re-enter your password!" },
-          ]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Re-Password"
-          />
-        </Form.Item>
-        <Form.Item
-          name="phoneNumber"
-          // rules={[{ required: true, message: 'Please re-enter your password!' }]}
-        >
-          <Input
-            prefix={<PhoneOutlined className="site-form-item-icon" />}
-            type="phone"
-            placeholder="Phone Number"
-          />
-        </Form.Item>
-        <Form.Item
-          name="firstName"
-          // rules={[{ required: true, message: 'Please re-enter your password!' }]}
-        >
-          <Input
-            prefix={<UserSwitchOutlined className="site-form-item-icon" />}
-            type="text"
-            placeholder="First Name"
-          />
-        </Form.Item>
-        <Form.Item
-          name="lastName"
-          // rules={[{ required: true, message: 'Please re-enter your password!' }]}
-        >
-          <Input
-            prefix={<UserSwitchOutlined className="site-form-item-icon" />}
-            type="text"
-            placeholder="Last Name"
-          />
-        </Form.Item>
-        <Form.Item
-          name="courseCode"
-          // rules={[{ required: true, message: 'Please re-enter your password!' }]}
-        >
-          <Input
-            prefix={<BookOutlined className="site-form-item-icon" />}
-            type="text"
-            placeholder="Course Number"
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="Term"
-          name="termNo"
-          rules={[
-            { required: true, message: "Please select the product type." },
-          ]}
-        >
-          <Select>
-            {productTypes.map((type) => (
-              <Select.Option key={type.value} value={type.value}>
-                {type.label}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            loading={loading}
+          <Form.Item
+            label="Username"
+            name="userName"
+            rules={[{ required: true, message: "Please input your username!" }]}
           >
-            Update
-          </Button>
-        </Form.Item>
-      </Form>
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="UserName"
+            />
+          </Form.Item>
+
+          <Form.Item label="Phone Number" name="phoneNumber">
+            <Input
+              prefix={<PhoneOutlined className="site-form-item-icon" />}
+              type="phone"
+              placeholder="Phone Number"
+            />
+          </Form.Item>
+
+          <Form.Item label="First Name" name="firstName">
+            <Input
+              prefix={<UserSwitchOutlined className="site-form-item-icon" />}
+              type="text"
+              placeholder="First Name"
+            />
+          </Form.Item>
+
+          <Form.Item label="Last Name" name="lastName">
+            <Input
+              prefix={<UserSwitchOutlined className="site-form-item-icon" />}
+              type="text"
+              placeholder="Last Name"
+            />
+          </Form.Item>
+
+          <Form.Item label="Course Code" name="courseCode">
+            <Input
+              prefix={<BookOutlined className="site-form-item-icon" />}
+              type="text"
+              placeholder="Course Number"
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Term"
+            name="termNo"
+            rules={[{ required: true, message: "Please select the term." }]}
+          >
+            <Select>
+              {productTypes.map((type) => (
+                <Select.Option key={type.value} value={type.value}>
+                  {type.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className={styles.updateButton}
+              loading={loading}
+            >
+              Update
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </>
   );
 };

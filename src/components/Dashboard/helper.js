@@ -4,6 +4,7 @@ import ProductForm from "../ProductForm/ProductForm";
 import styles from "./Dashboard.module.scss";
 import MyProfileForm from "../MyProfileForm/MyProfileForm";
 import { isOwnProduct } from "../Helper";
+import ResetPasswordPage from "../MyProfileForm/ResetPasswordPage";
 
 const onFinish = (values) => {
   console.log(values);
@@ -37,14 +38,18 @@ export const renderMenu = (
                 {...item}
               />
             ))}
+
+          {products?.length == 0 && <h1>No Data</h1>}
         </div>
       );
       break;
     case "6":
       return <MyProfileForm user={user} />;
     case "7":
-      return <ProductForm onFinish={onFinish} />;
+      return <ResetPasswordPage user={user} />;
     case "8":
+      return <ProductForm onFinish={onFinish} />;
+    case "9":
       return (
         <div className={styles.main}>
           {products &&
@@ -62,7 +67,7 @@ export const renderMenu = (
         </div>
       );
 
-    case "9":
+    case "10":
       return (
         <Modal
           title="Logout"
