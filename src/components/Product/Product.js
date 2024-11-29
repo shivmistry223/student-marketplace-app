@@ -11,6 +11,7 @@ const Product = ({
   productimageUrl,
   productName,
   productPrice,
+  productDescription,
   user,
   currPage,
   setPage,
@@ -43,6 +44,10 @@ const Product = ({
       />
       <div className={Styles.cardContent} onClick={handleClick}>
         <p className={Styles.cardTitle}>{productName}</p>
+        <p className={Styles.cardOwnerName}>
+          {productDescription?.split(" ").slice(0, 10).join(" ")}
+          {productDescription?.split(" ").length > 10 && "..."}
+        </p>
         <p className={Styles.cardPrice}>${productPrice}</p>
         <div className={Styles.ownerContainer}>
           <UserOutlined />

@@ -64,6 +64,9 @@ export const renderMenu = (
                   {...item}
                 />
               ))}
+          {products?.length == 0 && (
+            <h1>You have not added any product yet!!</h1>
+          )}
         </div>
       );
 

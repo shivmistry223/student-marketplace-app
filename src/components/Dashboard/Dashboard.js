@@ -8,7 +8,7 @@ import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
 import { renderMenu } from "./helper";
 import { logOut } from "../Helper";
-import { DASHBOARD, DELETE, MYPRODUCT,PRODUCTSEARCH } from "../constant";
+import { DASHBOARD, DELETE, MYPRODUCT, PRODUCTSEARCH } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
 const Dashboard = ({ user }) => {
@@ -33,7 +33,6 @@ const Dashboard = ({ user }) => {
     setPage("1");
   };
   const deleteProduct = (id) => {
-    // fetch(`${DELETE}/${id}/${JSON.parse(localStorage.getItem("user")).id}`, {
     fetch(`${DELETE}/${id}`, {
       method: "delete",
     })
@@ -50,7 +49,7 @@ const Dashboard = ({ user }) => {
     setLoading(true);
     const id = JSON.parse(localStorage.getItem("user"))._id;
     const url =
-      page == "8"
+      page == "9"
         ? `${DASHBOARD}?ownerId=${id}`
         : `${DASHBOARD}?category=${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
     fetch(url)
@@ -75,9 +74,11 @@ const Dashboard = ({ user }) => {
       });
   };
 
-  const handleSearch = (searchQuery)=>{
-      const url = `${PRODUCTSEARCH}/?category=${MENU_OPTIONS[parseInt(currPage) - 1].type}&name=${searchQuery}`;
-      fetch(url)
+  const handleSearch = (searchQuery) => {
+    const url = `${PRODUCTSEARCH}/?category=${
+      MENU_OPTIONS[parseInt(currPage) - 1].type
+    }&name=${searchQuery}`;
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           return response.text().then((errorMessage) => {
@@ -85,14 +86,15 @@ const Dashboard = ({ user }) => {
           });
         }
         return response.json();
-      }).then((data) => {
+      })
+      .then((data) => {
         setLoading(false);
         setProducts(data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
+  };
 
   useEffect(() => {
     console.log(user);
@@ -112,7 +114,7 @@ const Dashboard = ({ user }) => {
         <CustomMenu currPage={currPage} setPage={setPage} />
       </Sider>
       <Layout className={styles.container}>
-      <CustomHeader onSearch={handleSearch} />
+        <CustomHeader onSearch={handleSearch} />
         <Content className={styles.mainContainer}>
           {loading ? (
             <Skeleton />
