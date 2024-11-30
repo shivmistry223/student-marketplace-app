@@ -5,6 +5,8 @@ export const setUserData = (user) => {
 export const userExists = () => {
   if (!localStorage.getItem("user")) {
     window.location.href = "/login";
+  } else {
+    window.location.href = "/dashboard";
   }
 };
 

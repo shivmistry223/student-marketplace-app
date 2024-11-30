@@ -10,20 +10,20 @@ import { DASHBOARD, IMAGEDIR, PRODUCT, PRODUCTDETAILS } from "../constant";
 const { Content, Footer, Sider } = Layout;
 
 const ProductDetails = () => {
+  let { state } = useLocation();
+
   useEffect(() => {
     setLoading(true);
-    console.log("hii");
     fetch(`${PRODUCTDETAILS}/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        console.log(data, "product");
         setProduct(data);
       })
       .catch((e) => {
         console.log(e.message);
         setLoading(false);
-        // window.location.href = "/dashboard";
+        window.location.href = "/dashboard";
       });
   }, []);
   const {
@@ -32,7 +32,6 @@ const ProductDetails = () => {
 
   const { id } = useParams();
 
-  let { state } = useLocation();
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [product, setProduct] = useState({});
@@ -103,8 +102,6 @@ const ProductDetails = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
               >
-                {/* <p>Contact Number</p>
-                <p>{product?.productOwner?.phoneNumber}</p> */}
                 <Card className={styles.ownerCard}>
                   <div className={styles.ownerCardHeader}>
                     <UserOutlined
@@ -138,13 +135,13 @@ const ProductDetails = () => {
           )}
         </Content>
 
-        <Footer
+        {/* <Footer
           style={{
             textAlign: "center",
           }}
         >
           Lambton MarketPlace ©{new Date().getFullYear()}
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
   );

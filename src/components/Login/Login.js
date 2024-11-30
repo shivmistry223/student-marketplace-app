@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Layout, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { LOGIN, USER } from "../constant";
-import { setUserData } from "../Helper";
+import { setUserData, userExists } from "../Helper";
 import { useNavigate } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
@@ -12,6 +12,11 @@ const Login = ({ setUser }) => {
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (userExists()) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);

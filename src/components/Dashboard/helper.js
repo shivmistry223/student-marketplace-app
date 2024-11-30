@@ -86,3 +86,5 @@ export const renderMenu = (
       break;
   }
 };
+
+export const isPagination = (page) => page < 6 || page === "9";

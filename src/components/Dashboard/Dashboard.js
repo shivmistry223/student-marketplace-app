@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Layout, theme, Skeleton } from "antd";
+import { Layout, theme, Skeleton, Pagination } from "antd";
 import CustomMenu from "../Menu/CustomMenu";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import styles from "./Dashboard.module.scss";
 import Product from "../Product/Product";
 import { MENU_OPTIONS, product } from "./constant";
 import ProductForm from "../ProductForm/ProductForm";
-import { renderMenu } from "./helper";
+import { isPagination, renderMenu } from "./helper";
 import { logOut } from "../Helper";
 import { DASHBOARD, DELETE, MYPRODUCT, PRODUCTSEARCH } from "../constant";
 const { Content, Footer, Sider } = Layout;
@@ -20,6 +20,9 @@ const Dashboard = ({ user }) => {
   const [products, setProducts] = useState(product);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(6);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -44,14 +47,19 @@ const Dashboard = ({ user }) => {
       })
       .catch((e) => setLoading(false));
   };
-
-  const apiCall = (page) => {
+  const handlePaginationChange = (page, pageSize) => {
+    setCurrentPage(page);
+    setPageSize(pageSize);
+  };
+  const apiCall = (page, currentPage, limit) => {
     setLoading(true);
     const id = JSON.parse(localStorage.getItem("user"))._id;
     const url =
       page == "9"
         ? `${DASHBOARD}?ownerId=${id}`
-        : `${DASHBOARD}?category=${MENU_OPTIONS[parseInt(currPage) - 1].type}`;
+        : `${DASHBOARD}?category=${
+            MENU_OPTIONS[parseInt(currPage) - 1].type
+          }&page=${currentPage}&limit=${limit}`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -63,8 +71,9 @@ const Dashboard = ({ user }) => {
       })
       .then((data) => {
         setLoading(false);
-        setProducts(data);
-        console.log(data, "inside main");
+        const { products, totalCount } = data;
+        setProducts(products);
+        setTotal(totalCount);
         setPage(page);
       })
       .catch((e) => {
@@ -97,9 +106,8 @@ const Dashboard = ({ user }) => {
   };
 
   useEffect(() => {
-    console.log(user);
-    apiCall(currPage);
-  }, [currPage]);
+    apiCall(currPage, currentPage, pageSize);
+  }, [currPage, , currentPage, pageSize]);
 
   return (
     <Layout>
@@ -107,9 +115,7 @@ const Dashboard = ({ user }) => {
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {}}
-        onCollapse={(collapsed, type) => {
-          // console.log(collapsed, type);
-        }}
+        onCollapse={(collapsed, type) => {}}
       >
         <CustomMenu currPage={currPage} setPage={setPage} />
       </Sider>
@@ -119,37 +125,49 @@ const Dashboard = ({ user }) => {
           {loading ? (
             <Skeleton />
           ) : (
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-              className={styles.allProduct}
-            >
-              <h1>{MENU_OPTIONS[parseInt(currPage) - 1].title}</h1>
-              {renderMenu(
-                currPage,
-                setPage,
-                products,
-                isModalOpen,
-                handleOk,
-                handleCancel,
-                user,
-                deleteProduct
-              )}
-            </div>
+            <>
+              <div
+                style={{
+                  padding: 24,
+                  minHeight: 360,
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+                className={styles.allProduct}
+              >
+                <h1>{MENU_OPTIONS[parseInt(currPage) - 1].title}</h1>
+                {renderMenu(
+                  currPage,
+                  setPage,
+                  products,
+                  isModalOpen,
+                  handleOk,
+                  handleCancel,
+                  user,
+                  deleteProduct
+                )}
+                {isPagination(currPage) && (
+                  <Pagination
+                    style={{ textAlign: "center" }}
+                    current={currentPage}
+                    total={total}
+                    pageSize={pageSize}
+                    onChange={handlePaginationChange}
+                    showSizeChanger
+                    pageSizeOptions={["5", "10", "20", "50"]}
+                  />
+                )}
+              </div>
+              {/* <Footer
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Lambton MarketPlace ©{new Date().getFullYear()}
+              </Footer> */}
+            </>
           )}
         </Content>
-
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
-          Lambton MarketPlace ©{new Date().getFullYear()}
-        </Footer>
       </Layout>
     </Layout>
   );

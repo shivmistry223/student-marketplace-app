@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Layout, Select, message } from "antd";
 import {
   UserOutlined,
@@ -10,12 +10,20 @@ import {
 import styles from "../Login/Login.module.scss";
 import CustomHeader from "../CustomHeader/CustomHeader";
 import { REGISTER } from "../constant";
+import { Navigate, useNavigate } from "react-router-dom";
+import { userExists } from "../Helper";
 const { Header, Content, Footer } = Layout;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (userExists()) {
+      navigate("/dashboard");
+    }
+  }, []);
   const onFinish = (values) => {
     console.log(values);
     setLoading(true);
