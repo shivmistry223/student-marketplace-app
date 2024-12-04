@@ -23,6 +23,7 @@ const Dashboard = ({ user }) => {
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
+  const [resetSearch, setResetSearch] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -43,7 +44,7 @@ const Dashboard = ({ user }) => {
       .then((data) => {
         setLoading(false);
         console.log("inside delete");
-        apiCall(currPage);
+        apiCall(currPage, currentPage, pageSize);
       })
       .catch((e) => setLoading(false));
   };
@@ -52,11 +53,12 @@ const Dashboard = ({ user }) => {
     setPageSize(pageSize);
   };
   const apiCall = (page, currentPage, limit) => {
+    setResetSearch(true);
     setLoading(true);
     const id = JSON.parse(localStorage.getItem("user"))._id;
     const url =
       page == "9"
-        ? `${DASHBOARD}?ownerId=${id}`
+        ? `${DASHBOARD}?ownerId=${id}&page=${currentPage}&limit=${limit}`
         : `${DASHBOARD}?category=${
             MENU_OPTIONS[parseInt(currPage) - 1].type
           }&page=${currentPage}&limit=${limit}`;
@@ -84,9 +86,10 @@ const Dashboard = ({ user }) => {
   };
 
   const handleSearch = (searchQuery) => {
+    setResetSearch(false);
     const url = `${PRODUCTSEARCH}/?category=${
       MENU_OPTIONS[parseInt(currPage) - 1].type
-    }&name=${searchQuery}`;
+    }&page=${currentPage}&limit=${pageSize}&name=${searchQuery}`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -98,10 +101,15 @@ const Dashboard = ({ user }) => {
       })
       .then((data) => {
         setLoading(false);
-        setProducts(data);
+        const { products, totalCount } = data;
+        setProducts(products);
+        setTotal(totalCount);
+        setPage(currPage);
       })
       .catch((e) => {
         console.log(e);
+        setProducts([]);
+        setLoading(false);
       });
   };
 
@@ -120,7 +128,7 @@ const Dashboard = ({ user }) => {
         <CustomMenu currPage={currPage} setPage={setPage} />
       </Sider>
       <Layout className={styles.container}>
-        <CustomHeader onSearch={handleSearch} />
+        <CustomHeader onSearch={handleSearch} resetSearchQuery={resetSearch}/>
         <Content className={styles.mainContainer}>
           {loading ? (
             <Skeleton />
@@ -154,7 +162,7 @@ const Dashboard = ({ user }) => {
                     pageSize={pageSize}
                     onChange={handlePaginationChange}
                     showSizeChanger
-                    pageSizeOptions={["5", "10", "20", "50"]}
+                    pageSizeOptions={["5", "6", "10", "20", "50"]}
                   />
                 )}
               </div>

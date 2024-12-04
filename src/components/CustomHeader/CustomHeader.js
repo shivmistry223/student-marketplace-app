@@ -1,10 +1,10 @@
 import { Header } from "antd/es/layout/layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input } from "antd";
 import CustomMenu from "../Menu/CustomMenu";
 import Styles from "./CustomHeader.module.scss";
 
-const CustomHeader = ({ login, onSearch = () => {} }) => {
+const CustomHeader = ({ login, onSearch = () => {} , resetSearchQuery}) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const moveTo = (url) => {
@@ -20,6 +20,12 @@ const CustomHeader = ({ login, onSearch = () => {} }) => {
   const handleSearch = () => {
     onSearch(searchQuery.trim());
   };
+
+  useEffect(() => {
+    if (resetSearchQuery) {
+      setSearchQuery("");
+    }
+  }, [resetSearchQuery]);
 
   return (
     <Header className={Styles.container}>
