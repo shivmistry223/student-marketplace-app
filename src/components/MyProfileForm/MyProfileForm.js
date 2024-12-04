@@ -126,7 +126,13 @@ const MyProfileForm = ({ user }) => {
             />
           </Form.Item>
 
-          <Form.Item label="Phone Number" name="phoneNumber">
+          <Form.Item
+            label="Phone Number"
+            name="phoneNumber"
+            rules={[
+              { required: true, message: "Please input your Phone Number!" },
+            ]}
+          >
             <Input
               prefix={<PhoneOutlined className="site-form-item-icon" />}
               type="phone"
@@ -134,7 +140,13 @@ const MyProfileForm = ({ user }) => {
             />
           </Form.Item>
 
-          <Form.Item label="First Name" name="firstName">
+          <Form.Item
+            label="First Name"
+            name="firstName"
+            rules={[
+              { required: true, message: "Please input your First Name!" },
+            ]}
+          >
             <Input
               prefix={<UserSwitchOutlined className="site-form-item-icon" />}
               type="text"
@@ -142,7 +154,13 @@ const MyProfileForm = ({ user }) => {
             />
           </Form.Item>
 
-          <Form.Item label="Last Name" name="lastName">
+          <Form.Item
+            label="Last Name"
+            name="lastName"
+            rules={[
+              { required: true, message: "Please input your Last Name!" },
+            ]}
+          >
             <Input
               prefix={<UserSwitchOutlined className="site-form-item-icon" />}
               type="text"
@@ -150,7 +168,13 @@ const MyProfileForm = ({ user }) => {
             />
           </Form.Item>
 
-          <Form.Item label="Course Code" name="courseCode">
+          <Form.Item
+            label="Course Code"
+            name="courseCode"
+            rules={[
+              { required: true, message: "Please input your Course Code!" },
+            ]}
+          >
             <Input
               prefix={<BookOutlined className="site-form-item-icon" />}
               type="text"

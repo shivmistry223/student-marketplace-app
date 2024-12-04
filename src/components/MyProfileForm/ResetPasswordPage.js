@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Card } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import styles from "./MyProfileForm.module.scss";
 import { getUserId, setUserData } from "../Helper";
@@ -44,11 +44,11 @@ const ResetPasswordPage = () => {
     <>
       {contextHolder}
 
-      <div className={styles.resetPasswordContainer}>
+      <Card className={styles.profileCard}>
         <h2 className={styles.title}>Reset Password</h2>
         <Form
           name="reset_password"
-          className={styles.resetPasswordForm}
+          className={styles.myProfileForm}
           onFinish={onFinish}
         >
           <Form.Item
@@ -114,7 +114,7 @@ const ResetPasswordPage = () => {
             </Button>
           </Form.Item>
         </Form>
-      </div>
+      </Card>
     </>
   );
 };

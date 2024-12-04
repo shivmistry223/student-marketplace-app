@@ -2,13 +2,7 @@ export const setUserData = (user) => {
   localStorage.setItem("user", JSON.stringify(user));
 };
 
-export const userExists = () => {
-  if (!localStorage.getItem("user")) {
-    window.location.href = "/login";
-  } else {
-    window.location.href = "/dashboard";
-  }
-};
+export const userExists = () => localStorage.getItem("user");
 
 export const logOut = () => {
   localStorage.removeItem("user");

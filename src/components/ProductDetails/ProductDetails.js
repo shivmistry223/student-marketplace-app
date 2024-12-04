@@ -3,7 +3,7 @@ import { Layout, theme, Skeleton, Button, Modal, Card } from "antd";
 import styles from "../Dashboard/Dashboard.module.scss";
 import CustomMenu from "../Menu/CustomMenu";
 import CustomHeader from "../CustomHeader/CustomHeader";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UserOutlined } from "@ant-design/icons";
 import { DASHBOARD, IMAGEDIR, PRODUCT, PRODUCTDETAILS } from "../constant";
 
@@ -26,6 +26,13 @@ const ProductDetails = () => {
         window.location.href = "/dashboard";
       });
   }, []);
+
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -66,6 +73,9 @@ const ProductDetails = () => {
               }}
               className={styles.allProduct}
             >
+              <Button className={styles.button} onClick={goBack}>
+                Back
+              </Button>
               <div className={styles.productDetail}>
                 <div className={styles.productImage}>
                   <img

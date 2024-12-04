@@ -131,7 +131,7 @@ const ProductForm = ({}) => {
         <Input type="number" />
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8 }}>
+      <Form.Item>
         <Button type="primary" htmlType="submit" loading={loading}>
           Submit
         </Button>
